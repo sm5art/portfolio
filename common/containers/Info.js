@@ -10,20 +10,33 @@ class Info extends Component {
       super(props, context);
     }
   
+    componentDidMount() {
+      document.getElementById('myVideo').addEventListener('loadedmetadata', function() {
+        this.currentTime = 30;
+      }, false);
+    }
+
     render() {
       const { state, actions } = this.props;
       return (
-        <Grid container spacing={24}>
-          <Grid item xs>
-            <Paper>xs</Paper>
+        <React.Fragment>
+        <video style={{width: "100%", height: 'auto'}} autoPlay muted loop id="myVideo">
+                <source src="/static/earth.mp4" type="video/mp4"/>
+        </video>
+        <div style={{padding: 5}}> 
+          <Grid container spacing={24}>
+            <Grid item xs>
+              <Paper>xs</Paper>
+            </Grid>
+            <Grid item xs>
+              <Paper>xs</Paper>
+            </Grid>
+            <Grid item xs>
+              <Paper>xs</Paper>
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <Paper>xs</Paper>
-          </Grid>
-          <Grid item xs>
-            <Paper>xs</Paper>
-          </Grid>
-        </Grid>
+        </div>
+        </React.Fragment>
       );
     }
     

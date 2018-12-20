@@ -9941,6 +9941,13 @@ var Info = function (_Component) {
   }
 
   _createClass(Info, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      document.getElementById('myVideo').addEventListener('loadedmetadata', function () {
+        this.currentTime = 30;
+      }, false);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -9948,33 +9955,46 @@ var Info = function (_Component) {
           actions = _props.actions;
 
       return _react2.default.createElement(
-        _Grid2.default,
-        { container: true, spacing: 24 },
+        _react2.default.Fragment,
+        null,
         _react2.default.createElement(
-          _Grid2.default,
-          { item: true, xs: true },
-          _react2.default.createElement(
-            _Paper2.default,
-            null,
-            'xs'
-          )
+          'video',
+          { style: { width: "100%", height: 'auto' }, autoPlay: true, muted: true, loop: true, id: 'myVideo' },
+          _react2.default.createElement('source', { src: '/static/earth.mp4', type: 'video/mp4' })
         ),
         _react2.default.createElement(
-          _Grid2.default,
-          { item: true, xs: true },
+          'div',
+          { style: { padding: 5 } },
           _react2.default.createElement(
-            _Paper2.default,
-            null,
-            'xs'
-          )
-        ),
-        _react2.default.createElement(
-          _Grid2.default,
-          { item: true, xs: true },
-          _react2.default.createElement(
-            _Paper2.default,
-            null,
-            'xs'
+            _Grid2.default,
+            { container: true, spacing: 24 },
+            _react2.default.createElement(
+              _Grid2.default,
+              { item: true, xs: true },
+              _react2.default.createElement(
+                _Paper2.default,
+                null,
+                'xs'
+              )
+            ),
+            _react2.default.createElement(
+              _Grid2.default,
+              { item: true, xs: true },
+              _react2.default.createElement(
+                _Paper2.default,
+                null,
+                'xs'
+              )
+            ),
+            _react2.default.createElement(
+              _Grid2.default,
+              { item: true, xs: true },
+              _react2.default.createElement(
+                _Paper2.default,
+                null,
+                'xs'
+              )
+            )
           )
         )
       );
@@ -45455,9 +45475,16 @@ Object.defineProperty(exports, "__esModule", {
 
 var _styles = __webpack_require__(97);
 
+var _indigo = __webpack_require__(213);
+
+var _indigo2 = _interopRequireDefault(_indigo);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var theme = (0, _styles.createMuiTheme)({
   palette: {
-    type: 'dark'
+    type: 'dark',
+    primary: { main: "#303f9f" }
   }
 });
 
