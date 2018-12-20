@@ -7,6 +7,20 @@ const theme = createMuiTheme({
       type: 'dark',
       primary: { main: "#303f9f" }
     },
+
+    typography: {
+      // Use the system font instead of the default Roboto font.
+      fontFamily: [
+        "Spectral",
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    }
 });
 
 

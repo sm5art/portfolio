@@ -9949,6 +9949,10 @@ var _Grid = __webpack_require__(226);
 
 var _Grid2 = _interopRequireDefault(_Grid);
 
+var _Typography = __webpack_require__(237);
+
+var _Typography2 = _interopRequireDefault(_Typography);
+
 var _redux = __webpack_require__(28);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -9975,10 +9979,12 @@ var Info = function (_Component) {
     value: function componentDidMount() {
       document.getElementById('myVideo').addEventListener('loadedmetadata', function () {
         this.currentTime = 30;
+        this.play();
       }, false);
 
       document.getElementById('myVideo').addEventListener('ended', function () {
         this.load();
+        this.currentTime = 30;
         this.play();
       }, false);
     }
@@ -9994,10 +10000,23 @@ var Info = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          { style: { width: "100%", height: 'auto', minHeight: '70%', overflow: 'hidden', whiteSpace: 'nowrap' } },
+          { style: { position: 'relative', width: "100%", height: 'auto', minHeight: '70%' } },
+          _react2.default.createElement(
+            'div',
+            { style: { position: 'absolute', top: 0, right: 0 } },
+            _react2.default.createElement(
+              'div',
+              { style: { paddingRight: 30, paddingTop: "20" } },
+              _react2.default.createElement(
+                _Typography2.default,
+                { classes: { root: { fontWeight: 'bold' } }, variant: 'h3', color: 'textSecondary' },
+                'Making the world a better place'
+              )
+            )
+          ),
           _react2.default.createElement(
             'video',
-            { style: { minWidth: "100%", objectFit: 'fill' }, autoPlay: true, muted: true, id: 'myVideo' },
+            { playsInline: true, style: { minWidth: "100%", objectFit: 'fill', overflow: 'hidden', filter: "opacity(45%)" }, muted: true, id: 'myVideo' },
             _react2.default.createElement('source', { src: '/static/earth.mp4', type: 'video/mp4' })
           )
         ),
@@ -45499,6 +45518,11 @@ var theme = (0, _styles.createMuiTheme)({
   palette: {
     type: 'dark',
     primary: { main: "#303f9f" }
+  },
+
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: ["Spectral", 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"'].join(',')
   }
 });
 

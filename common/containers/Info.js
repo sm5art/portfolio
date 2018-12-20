@@ -3,6 +3,7 @@ import * as login from '../actions/login';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import { bindActionCreators } from 'redux';
 
 class Info extends Component {
@@ -13,20 +14,30 @@ class Info extends Component {
     componentDidMount() {
       document.getElementById('myVideo').addEventListener('loadedmetadata', function() {
         this.currentTime = 30;
-      }, false);
-
-      document.getElementById('myVideo').addEventListener('ended', function () {
-        this.load();
         this.play();
       }, false);
+
+      document.getElementById('myVideo').addEventListener('ended', function() {
+        this.load();
+        this.currentTime = 30;
+        this.play();
+      }, false);
+
     }
 
     render() {
       const { state, actions } = this.props;
       return (
         <React.Fragment>
-          <div style={{width:"100%", height: 'auto', minHeight:'70%', overflow:'hidden', whiteSpace: 'nowrap'}}>
-            <video style={{minWidth:"100%", objectFit: 'fill'}} autoPlay muted id="myVideo">
+          <div style={{position:'relative', width:"100%", height: 'auto', minHeight:'70%'}}>
+            <div style={{position:'absolute', top: 0, right:0}}>
+              <div style={{paddingRight: 30, paddingTop:"20"}}>
+                <Typography classes={{root: {fontWeight: 'bold'}}} variant="h3" color="textSecondary">
+                                            Making the world a better place
+                                        </Typography>
+              </div>
+            </div>
+            <video playsInline style={{minWidth:"100%", objectFit: 'fill', overflow:'hidden', filter:"opacity(45%)"}} muted id="myVideo">
               <source src="/static/earth.mp4" type="video/mp4"/>
             </video>
           </div>
