@@ -3,6 +3,7 @@ import React from 'react';
 import { Component } from 'react';
 import Info from '../../common/containers/Info';
 import Shell from '../../common/containers/Shell';
+import Timeline from '../../common/containers/Timeline';
 import ReactDOM from "react-dom";
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -18,6 +19,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={Shell}>
         <IndexRoute component={Info}/>
+        <Route path="timeline" component={Timeline}/>
       </Route>
     </Router>
     </Provider>)
