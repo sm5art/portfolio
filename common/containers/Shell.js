@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import theme from '../store/theme';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 
 class Shell extends Component {
@@ -15,6 +17,7 @@ class Shell extends Component {
 
     render () {
         return (<MuiThemeProvider theme={theme}>
+                    <CssBaseline />
                     <React.Fragment>
                         <div style={{flexGrow:1}}>
                             <AppBar color="primary" position="static">
