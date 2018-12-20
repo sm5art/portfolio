@@ -26,7 +26,7 @@ class Shell extends Component {
                                         <MenuIcon />
                                     </IconButton>
                                     <Typography variant="h6" color="inherit">
-                                        Artur K.
+                                        Artur Kashperskiy
                                     </Typography>
                                 </Toolbar>
                             </AppBar>
