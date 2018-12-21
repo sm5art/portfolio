@@ -24,7 +24,18 @@ class Hero extends Component {
 
     componentDidMount() {
         const that = this;
-        setTimeout(() => {that.setState({fade: true})}, 1000)
+        setTimeout(() => {that.setState({fade: true})}, 1000);
+
+        document.getElementById('myVideo').addEventListener('loadedmetadata', function() {
+            this.currentTime = 30;
+            this.play();
+          }, false);
+    
+          document.getElementById('myVideo').addEventListener('ended', function() {
+            this.load();
+            this.currentTime = 30;
+            this.play();
+          }, false);
     }
 
     render() {

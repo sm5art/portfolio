@@ -15251,20 +15251,6 @@ var Info = function (_Component) {
   }
 
   _createClass(Info, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      document.getElementById('myVideo').addEventListener('loadedmetadata', function () {
-        this.currentTime = 30;
-        this.play();
-      }, false);
-
-      document.getElementById('myVideo').addEventListener('ended', function () {
-        this.load();
-        this.currentTime = 30;
-        this.play();
-      }, false);
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -24896,6 +24882,17 @@ var Hero = function (_Component) {
             setTimeout(function () {
                 that.setState({ fade: true });
             }, 1000);
+
+            document.getElementById('myVideo').addEventListener('loadedmetadata', function () {
+                this.currentTime = 30;
+                this.play();
+            }, false);
+
+            document.getElementById('myVideo').addEventListener('ended', function () {
+                this.load();
+                this.currentTime = 30;
+                this.play();
+            }, false);
         }
     }, {
         key: 'render',

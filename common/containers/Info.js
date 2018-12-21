@@ -10,20 +10,6 @@ class Info extends Component {
     constructor(props, context) {
       super(props, context);
     }
-  
-    componentDidMount() {
-      document.getElementById('myVideo').addEventListener('loadedmetadata', function() {
-        this.currentTime = 30;
-        this.play();
-      }, false);
-
-      document.getElementById('myVideo').addEventListener('ended', function() {
-        this.load();
-        this.currentTime = 30;
-        this.play();
-      }, false);
-
-    }
 
     render() {
       const { state, actions, classes } = this.props;
