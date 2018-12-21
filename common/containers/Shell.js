@@ -9,8 +9,12 @@ import EmailIcon from '@material-ui/icons/Email';
 import theme from '../store/theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import GithubIcon from '../components/GithubIcon';
+import * as drawer from '../actions/drawer';
 import LinkedInIcon from '../components/LinkedInIcon';
 import { withStyles } from '@material-ui/core/styles';
+import DrawerBase from '../components/Drawer';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const styles = {
     root: {
@@ -27,14 +31,15 @@ class Shell extends Component {
     }
 
     render () {
-        const {classes} = this.props;
+        const {classes, actions} = this.props;
         return (<MuiThemeProvider theme={theme}>
                     <CssBaseline />
+                    <DrawerBase/>
                     <React.Fragment>
                         <div className={classes.grow}>
                             <AppBar color="primary" position="static">
                                 <Toolbar>
-                                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                                    <IconButton onClick={()=>{actions.reverseDrawer()}} className={classes.menuButton} color="inherit" aria-label="Menu">
                                         <MenuIcon />
                                     </IconButton>
                                     <div className={classes.grow}>
@@ -43,13 +48,13 @@ class Shell extends Component {
                                         </Typography>
                                     </div>
                                     <div className={classes.flex}>
-                                        <IconButton color="inherit">
+                                        <IconButton href="https://github.com/sm5art" color="inherit">
                                             <GithubIcon/>
                                         </IconButton>
-                                        <IconButton color="inherit">
+                                        <IconButton href="https://www.linkedin.com/in/artur-kashperskiy-9171ab11a/" color="inherit">
                                             <LinkedInIcon/>
                                         </IconButton>
-                                        <IconButton color="inherit">
+                                        <IconButton href="mailto:arturk@uw.edu" color="inherit">
                                             <EmailIcon/>
                                         </IconButton>
                                     </div>
@@ -61,5 +66,19 @@ class Shell extends Component {
                 </MuiThemeProvider>);
     }
 }
+function mapStateToProps(state) {
+    return {
+      state: state.drawer
+    };
+}
+  
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({ ...drawer}, dispatch)
+    };
+}
 
-export default withStyles(styles)(Shell);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withStyles(styles)(Shell));

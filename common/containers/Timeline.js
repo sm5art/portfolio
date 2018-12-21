@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as timeline from '../actions/timeline';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Timeline } from 'react-material-timeline';
+import { Timeline } from '../components/Timeline';
 import { Avatar } from '@material-ui/core';
 import GithubIcon from '../components/GithubIcon';
 import WorkIcon from '@material-ui/icons/Work';
