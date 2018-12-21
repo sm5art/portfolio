@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
 import * as login from '../actions/login';
 import { connect } from 'react-redux';
-import Paper from '@material-ui/core/Paper';
 import { bindActionCreators } from 'redux';
+import { Timeline } from 'react-material-timeline';
+import { Avatar } from '@material-ui/core';
+import GithubIcon from '../components/GithubIcon';
+import { withStyles } from '@material-ui/core/styles';
 
-class Timeline extends Component {
+const styles = {
+  root: {padding: 15}
+};
+
+const events = [{
+    title: 'Event 1',
+    subheader: new Date().toString(),
+    description: [ 'Some description for event 1' ],
+    icon: <Avatar><GithubIcon/></Avatar>,
+  },
+  {
+    title: 'Event 2',
+    subheader: new Date().toString(),
+    description: [ 'Some description for event 2' ],
+    icon: <Avatar><GithubIcon/></Avatar>,
+  }
+];
+class TimelineContainer extends Component {
     constructor(props, context) {
       super(props, context);
     }
   
     render() {
-      const { state, actions } = this.props;
+      const { state, actions, classes } = this.props;
       return (
-        <Paper>
-          timeline
-        </Paper>
+        <div className={classes.root}>
+          <Timeline events={events}/>
+        </div>
       );
     }
     
@@ -31,9 +51,9 @@ function mapStateToProps(state) {
       actions: bindActionCreators({ ...login}, dispatch)
     };
   }
-  
+
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Timeline);
+  )(withStyles(styles)(TimelineContainer));
