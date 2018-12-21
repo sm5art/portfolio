@@ -7,8 +7,15 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import theme from '../store/theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { withStyles } from '@material-ui/core/styles';
 
-
+const styles = {
+    root: {
+      fontFamily: 'Roboto',
+    },
+    menuButton: {marginLeft: -12, marginRight: 20},
+    grow: {flexGrow:1}
+};
 
 class Shell extends Component {
     constructor(props, context) {
@@ -16,16 +23,17 @@ class Shell extends Component {
     }
 
     render () {
+        const {classes} = this.props;
         return (<MuiThemeProvider theme={theme}>
                     <CssBaseline />
                     <React.Fragment>
-                        <div style={{flexGrow:1}}>
+                        <div className={classes.grow}>
                             <AppBar color="primary" position="static">
                                 <Toolbar>
-                                    <IconButton style={{marginLeft: -12, marginRight: 20}} color="inherit" aria-label="Menu">
+                                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                                         <MenuIcon />
                                     </IconButton>
-                                    <Typography variant="h6" color="inherit">
+                                    <Typography className={classes.root} variant="h6" color="inherit">
                                         Artur Kashperskiy
                                     </Typography>
                                 </Toolbar>
@@ -37,4 +45,4 @@ class Shell extends Component {
     }
 }
 
-export default Shell;
+export default withStyles(styles)(Shell);
