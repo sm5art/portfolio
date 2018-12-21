@@ -1,41 +1,70 @@
 import React, { Component } from 'react';
-import * as login from '../actions/login';
+import * as timeline from '../actions/timeline';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Timeline } from 'react-material-timeline';
 import { Avatar } from '@material-ui/core';
 import GithubIcon from '../components/GithubIcon';
+import WorkIcon from '@material-ui/icons/Work';
+import SchoolIcon from '@material-ui/icons/School';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {padding: 15}
 };
 
-const events = [{
-    title: 'Event 1',
-    subheader: new Date().toString(),
-    description: [ 'Some description for event 1' ],
-    icon: <Avatar><GithubIcon/></Avatar>,
-  },
-  {
-    title: 'Event 2',
-    subheader: new Date().toString(),
-    description: [ 'Some description for event 2' ],
-    icon: <Avatar><GithubIcon/></Avatar>,
-  }
-];
+const map = {
+  0:() => <Avatar><GithubIcon/></Avatar>, 
+  1:() => <Avatar><WorkIcon/></Avatar>,
+  2:() => <Avatar><SchoolIcon/></Avatar>,
+}
+
 class TimelineContainer extends Component {
+    state = {
+      processed: false,
+      events: null
+    }
     constructor(props, context) {
       super(props, context);
+      this.processEvents = this.processEvents.bind(this);
+    }
+
+    componentDidMount () {
+      const { actions } = this.props;
+      actions.fetchTimeline();
+    }
+
+    componentDidUpdate() {
+      if(!this.state.processed & this.props.state.timeline.loaded) {
+          this.processEvents();
+      }
+    }
+
+    processEvents(){
+      const { state } = this.props;
+      let events = []
+      for(var i = 0; i < state.timeline.data.length; i++) {
+        const object = state.timeline.data[i];
+        events.push({ title: object['name'], subheader: object['created_at'], description: object['description'], icon: map[object['type']]()})
+      }
+      console.log(events)
+      this.setState({processed: true, events})
     }
   
     render() {
-      const { state, actions, classes } = this.props;
+      const { state, classes } = this.props;
+      console.log(state)
+      let loadedComponent = null;
+      console.log(this.state.events)
+      if(this.state.processed){
+        loadedComponent = (
+          <div className={classes.root}>
+            <Timeline events={this.state.events}/>
+          </div>);
+      }
       return (
-        <div className={classes.root}>
-          <Timeline events={events}/>
-        </div>
-      );
+    state.timeline.loaded ? loadedComponent : <div>Not Loaded</div>);
+      
     }
     
   }
@@ -48,7 +77,7 @@ function mapStateToProps(state) {
   
   function mapDispatchToProps(dispatch) {
     return {
-      actions: bindActionCreators({ ...login}, dispatch)
+      actions: bindActionCreators({ ...timeline}, dispatch)
     };
   }
 

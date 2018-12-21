@@ -1,0 +1,27 @@
+,created_at,description,html_url,name,type
+7,2018-12-21 06:05:16,"builds a nice json of all your github contributions from start to finish, also has cli to create custom events",https://github.com/sm5art/contributions-fetcher,contributions-fetcher,0
+19,2018-12-19 06:21:38,making one of those trendy sites that everyone has,https://github.com/sm5art/portfolio,portfolio,0
+13,2018-10-26 03:02:27,genetic algorithm pong game,https://github.com/sm5art/genetic-pong,genetic-pong,0
+25,2017-10-06 08:29:59,pulling all data for rsos and making a way better directory,https://github.com/sm5art/uw-rso-directory,uw-rso-directory,0
+1,2017-09-25 00:00:00,"BS Computer Science Classes: Num Analysis, Matrix Algebra, Vector Analysis, Complex Analysis, Data Structures, Mechanics",,Started studies at University of Washington,2
+3,2017-06-10 00:00:00,Worked in a python data science stack working on signal research,,Started Work at Nipun Capital as Quant. Finance Research Intern,1
+0,2017-06-09 00:00:00,"UW GPA: 3.8 W GPA 4.25 Classes: Calc 1, 2 Physics 1, 2 CS 101",,Graduated from California High School,2
+16,2017-02-26 08:58:19,kernel,https://github.com/sm5art/kernel,kernel,0
+5,2017-02-26 02:20:50,"A simple OS kernel for research, teaching, and fun.",https://github.com/sm5art/basekernel,basekernel,0
+14,2017-02-25 01:13:04,How to Make a Computer Operating System in C++,https://github.com/sm5art/How-to-Make-a-Computer-Operating-System,How-to-Make-a-Computer-Operating-System,0
+20,2017-01-22 20:38:27,I am making a QuadCopter. This is probably a bad idea.,https://github.com/sm5art/QuadCopter,QuadCopter,0
+15,2016-11-18 04:03:19,This is a python implementation of a simple IPv4 Router with firewall,https://github.com/sm5art/ipv4router,ipv4router,0
+10,2016-11-01 06:27:50,An API wrapper for Discord written in Python.,https://github.com/sm5art/discord.py,discord.py,0
+12,2016-10-27 16:32:12,The official repository of the Eesen project,https://github.com/sm5art/eesen,eesen,0
+17,2016-10-18 06:11:10,discord bot for one simple purpose,https://github.com/sm5art/memr-bot,memr-bot,0
+22,2016-10-15 19:55:49,Python 3.5+ web server that's written to go fast,https://github.com/sm5art/sanic,sanic,0
+18,2016-08-05 18:46:23,"plump your data in, dump the labels out, a shitty machine learning framework",https://github.com/sm5art/plumpdump,plumpdump,0
+4,2016-06-20 17:07:57,writing an api for address validation for ecommerce,https://github.com/sm5art/address-validation,address-validation,0
+2,2016-06-10 00:00:00,"Python/ Javascript full stack developer: used react-redux for front-end. Projects: analytics dashboard, address validation, a/b testing",,Started Work at Minted as Software Engineer Intern,1
+9,2016-05-28 06:15:43,This is a collection if jupyter notebooks of my ideas as I learn machine learning/deep learning,https://github.com/sm5art/deep-learning,deep-learning,0
+8,2016-05-26 05:50:47,"Using d3 and reactjs and an express hosting server, I visualize related videos on youtube in terms of view count.",https://github.com/sm5art/data-visualization,data-visualization,0
+23,2016-05-21 05:34:29,Using my knowledge of javascript stacks and real-time communication I write a server composed of many moving parts that serves dynamic stock data.,https://github.com/sm5art/stock-dashboard,stock-dashboard,0
+21,2016-05-19 03:10:54,Mix react rendering on server and on client sided for better search engine indexing.,https://github.com/sm5art/react-server,react-server,0
+6,2016-05-04 16:38:16,"boilerjs is a boilerplate for express, react, mongodb, and passport",https://github.com/sm5art/boilerjs,boilerjs,0
+24,2016-04-21 05:19:29,What links are being spammed the most in realtime on twitch,https://github.com/sm5art/twitch_spam,twitch_spam,0
+11,2016-03-30 03:12:58,a tornado python webserver that serves a simple dropbox like service.,https://github.com/sm5art/dropbox,dropbox,0

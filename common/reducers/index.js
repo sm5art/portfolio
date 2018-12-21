@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import loginReducer from './login';
+import timelineReducer from './timeline';
 
 
 const rootReducer = combineReducers({
     routing: routerReducer,
-    login: loginReducer,
+    timeline: timelineReducer,
 });
 
 export default rootReducer;
