@@ -53392,7 +53392,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var styles = {
-  root: { padding: 15 }
+  root: { paddingTop: 20, paddingLeft: "25%", paddingRight: "25%" }
 };
 
 var map = {
@@ -53422,10 +53422,10 @@ var map = {
   //1 is for UW
 };var extraMap = {
   0: function _() {
-    return ["iframe", "https://www.youtube.com/embed/mFOKdGye7vY", 500, 200];
+    return ["iframe", "https://www.youtube.com/embed/mFOKdGye7vY"];
   },
   1: function _() {
-    return ["img", "https://s3.amazonaws.com/media.guidebook.com/upload/MobileApp/1067/m3dkkYsBX5DT6kxNvBTay5hQhaLWC6fE6xwE", 200, 200];
+    return ["img", "https://s3.amazonaws.com/media.guidebook.com/upload/MobileApp/1067/m3dkkYsBX5DT6kxNvBTay5hQhaLWC6fE6xwE"];
   }
 };
 
@@ -53699,11 +53699,7 @@ var TimelineBase = function (_React$Component) {
           React.createElement(
             _core.Card,
             null,
-            event.extra ? React.createElement(
-              'div',
-              { style: { display: 'flex', flexGrow: 1, width: event['extra'][2], height: event['extra'][3] } },
-              React.createElement(_CardMedia2.default, { component: event['extra'][0], src: event.extra[1] })
-            ) : null,
+            event.extra ? React.createElement(_CardMedia2.default, { component: event['extra'][0], src: event.extra[1] }) : null,
             React.createElement(_core.CardHeader, { title: event.title, subheader: event.subheader }),
             React.createElement(
               _core.CardContent,

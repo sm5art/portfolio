@@ -99,7 +99,7 @@ class TimelineBase extends React.Component {
         <div className={isLeft ?
           classes.cardDecoratorLeft : classes.cardDecoratorRight}/>
             <Card>
-            { event.extra ?  (<div style={{display:'flex', flexGrow:1, width: event['extra'][2], height: event['extra'][3]}}><CardMedia component={event['extra'][0]} src={event.extra[1]}/></div>) : null }
+            { event.extra ?  (<CardMedia component={event['extra'][0]} src={event.extra[1]}/>) : null }
             <CardHeader title={event.title} subheader={event.subheader}/>
             <CardContent>
                 { event.description }

@@ -10,7 +10,7 @@ import SchoolIcon from '@material-ui/icons/School';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-  root: {padding: 15}
+  root: {paddingTop: 20, paddingLeft: "25%", paddingRight: "25%"}
 };
 
 const map = {
@@ -22,8 +22,8 @@ const map = {
 //0 is for genetic pong 
 //1 is for UW
 const extraMap = {
-  0: () => ["iframe", "https://www.youtube.com/embed/mFOKdGye7vY", 500, 200],
-  1: () => ["img", "https://s3.amazonaws.com/media.guidebook.com/upload/MobileApp/1067/m3dkkYsBX5DT6kxNvBTay5hQhaLWC6fE6xwE", 200, 200]
+  0: () => ["iframe", "https://www.youtube.com/embed/mFOKdGye7vY"],
+  1: () => ["img", "https://s3.amazonaws.com/media.guidebook.com/upload/MobileApp/1067/m3dkkYsBX5DT6kxNvBTay5hQhaLWC6fE6xwE"]
 }
 
 class TimelineContainer extends Component {
