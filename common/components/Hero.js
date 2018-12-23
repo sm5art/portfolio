@@ -4,14 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 
 const styles = {
-    root: {
-        fontFamily: 'Spectral'
-
-    },
     contain: {position:'relative', width:"100%", height: 'auto', minHeight:'70%'},
     outer: {zIndex:500, position:'absolute', top: 0, right:0, width:'100%', height:'100%', backgroundColor:'#121858'},
     inner: { padding:10},
-    video: {minWidth:"100%", objectFit: 'fill', overflow:'hidden'}
+    video: {minWidth:"100%", objectFit: 'fill', overflow:'hidden'},
+    gothic: { fontFamily: 'Nanum Gothic'}
 }
 
 class Hero extends Component {
@@ -44,7 +41,7 @@ class Hero extends Component {
                     <div id='outer' className={classes.outer + " herotransition"}>
                         <div className={classes.inner}>
                             <Fade timeout={2000} in={this.state.fade}>
-                                <Typography className={classes.root} variant="h3" color="textPrimary">
+                                <Typography className={classes.gothic} variant="h3" color="textPrimary">
                                     embedded systems | machine learning | data science | software engineering
                                 </Typography>
                             </Fade>

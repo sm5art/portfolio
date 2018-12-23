@@ -18,11 +18,11 @@ import { bindActionCreators } from 'redux';
 
 const styles = {
     root: {
-      fontFamily: 'Roboto',
+      fontWeight: 'bold',
     },
-    menuButton: {marginLeft: -12, marginRight: 20},
-    grow: {flexGrow:1},
-    flex: {display: "flex"}
+    menuButton: { marginLeft: -12, marginRight: 20 },
+    grow: { flexGrow:1 },
+    flex: { display: "flex" }
 };
 
 class Shell extends Component {
