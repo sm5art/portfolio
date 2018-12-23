@@ -53507,19 +53507,13 @@ var TimelineContainer = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          state = _props.state,
-          classes = _props.classes;
+      var classes = this.props.classes;
 
-      var loadedComponent = null;
-      if (this.state.processed) {
-        loadedComponent = _react2.default.createElement(
-          'div',
-          { className: this.state.width < 900 ? classes.smaller : classes.normal },
-          _react2.default.createElement(_Timeline.Timeline, { events: this.state.events })
-        );
-      }
-      return state.timeline.loaded ? loadedComponent : _react2.default.createElement(
+      return this.state.processed ? _react2.default.createElement(
+        'div',
+        { className: this.state.width < 900 ? classes.smaller : classes.normal },
+        _react2.default.createElement(_Timeline.Timeline, { events: this.state.events })
+      ) : _react2.default.createElement(
         'div',
         null,
         'Not Loaded'

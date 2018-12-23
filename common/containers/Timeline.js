@@ -85,16 +85,12 @@ class TimelineContainer extends Component {
     }
   
     render() {
-      const { state, classes } = this.props;
-      let loadedComponent = null;
-      if(this.state.processed){
-        loadedComponent = (
+      const { classes } = this.props;
+      return (
+        this.state.processed ? (
           <div className={this.state.width < 900 ? classes.smaller : classes.normal}>
             <Timeline events={this.state.events}/>
-          </div>);
-      }
-      return (
-    state.timeline.loaded ? loadedComponent : <div>Not Loaded</div>);
+          </div>) : <div>Not Loaded</div>);
       
     }
     
