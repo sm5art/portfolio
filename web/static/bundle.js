@@ -46162,6 +46162,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var DrawerItem = function DrawerItem(props) {
+    return _react2.default.createElement(
+        _ListItem2.default,
+        { selected: window.location.pathname == props.path, onClick: function onClick() {
+                _reactRouter.browserHistory.push(props.path);props.actions.reverseDrawer();
+            }, button: true },
+        _react2.default.createElement(
+            _ListItemIcon2.default,
+            null,
+            props.icon
+        ),
+        _react2.default.createElement(_ListItemText2.default, { primary: props.name })
+    );
+};
+
 var DrawerBase = function (_Component) {
     _inherits(DrawerBase, _Component);
 
@@ -46186,30 +46201,8 @@ var DrawerBase = function (_Component) {
                 _react2.default.createElement(
                     _List2.default,
                     null,
-                    _react2.default.createElement(
-                        _ListItem2.default,
-                        { onClick: function onClick() {
-                                _reactRouter.browserHistory.push('/');actions.reverseDrawer();
-                            }, button: true },
-                        _react2.default.createElement(
-                            _ListItemIcon2.default,
-                            null,
-                            _react2.default.createElement(_Home2.default, null)
-                        ),
-                        _react2.default.createElement(_ListItemText2.default, { primary: 'Home' })
-                    ),
-                    _react2.default.createElement(
-                        _ListItem2.default,
-                        { onClick: function onClick() {
-                                _reactRouter.browserHistory.push('/timeline');actions.reverseDrawer();
-                            }, button: true },
-                        _react2.default.createElement(
-                            _ListItemIcon2.default,
-                            null,
-                            _react2.default.createElement(_Timeline2.default, null)
-                        ),
-                        _react2.default.createElement(_ListItemText2.default, { primary: 'Timeline' })
-                    )
+                    _react2.default.createElement(DrawerItem, { actions: actions, name: 'Home', path: '/', icon: _react2.default.createElement(_Home2.default, null) }),
+                    _react2.default.createElement(DrawerItem, { actions: actions, name: 'Timeline', path: '/timeline', icon: _react2.default.createElement(_Timeline2.default, null) })
                 )
             );
         }

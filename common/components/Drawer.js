@@ -11,6 +11,13 @@ import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import { browserHistory } from 'react-router';
 
+
+const DrawerItem = (props) => 
+        <ListItem selected={window.location.pathname == props.path} onClick={()=>{browserHistory.push(props.path); props.actions.reverseDrawer();}} button>
+              <ListItemIcon>{props.icon}</ListItemIcon>
+              <ListItemText primary={props.name} />
+            </ListItem>
+
 class DrawerBase extends Component {
     constructor(props, context) {
         super(props, context);
@@ -20,15 +27,9 @@ class DrawerBase extends Component {
         const { state, actions } = this.props;
         return (<Drawer open={state.toggled} onClose={()=>{actions.reverseDrawer()}}>
           <List>
-            <ListItem onClick={()=>{browserHistory.push('/'); actions.reverseDrawer();}} button>
-              <ListItemIcon><HomeIcon/></ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem onClick={()=>{browserHistory.push('/timeline'); actions.reverseDrawer();}} button>
-              <ListItemIcon><TimelineIcon/></ListItemIcon>
-              <ListItemText primary="Timeline" />
-            </ListItem>
-        </List>
+            <DrawerItem actions={actions} name="Home" path="/" icon={<HomeIcon/>}/>
+            <DrawerItem actions={actions} name="Timeline" path="/timeline" icon={<TimelineIcon/>}/>
+            </List>
         </Drawer>);
     }
 }
