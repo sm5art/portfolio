@@ -8,7 +8,6 @@ class Info extends Component {
     }
 
     render() {
-      const { state, actions, classes } = this.props;
       return (
         <React.Fragment>
           <Hero/>
