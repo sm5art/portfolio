@@ -15364,13 +15364,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var styles = function styles(theme) {
     return {
         contain: { position: 'relative', width: "100%", height: 'auto', minHeight: '70%' },
-        outer: { zIndex: 500, position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', backgroundColor: '#121858' },
+        outer: { zIndex: 500, position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', backgroundColor: theme.palette.secondary.dark },
         inner: { padding: 10 },
         grow: { flexGrow: 1 },
         button: { margin: 15 },
         rightIcon: { marginRight: theme.spacing.unit },
         video: { minWidth: "100%", objectFit: 'fill', overflow: 'hidden' },
-        gothic: { color: "#69696a", fontFamily: 'Nanum Gothic' }
+        gothic: { color: theme.palette.primary.light, fontFamily: 'Nanum Gothic' }
     };
 };
 
@@ -45924,7 +45924,7 @@ var theme = (0, _styles.createMuiTheme)({
     secondary: {
       light: '#fff5f8',
       main: '#ff3366',
-      dark: '#e62958'
+      dark: '#330e62'
     },
     warning: {
       main: '#ffc071',
@@ -53392,7 +53392,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var styles = {
-  root: { paddingTop: 20, paddingLeft: "25%", paddingRight: "25%" }
+  normal: { paddingTop: 20, paddingLeft: "25%", paddingRight: "25%" },
+  smaller: { padding: 12 }
 };
 
 var map = {
@@ -53439,18 +53440,45 @@ var TimelineContainer = function (_Component) {
 
     _this.state = {
       processed: false,
-      events: null
+      events: null,
+      width: null,
+      height: null
     };
 
     _this.processEvents = _this.processEvents.bind(_this);
+    _this.updateDimensions = _this.updateDimensions.bind(_this);
     return _this;
   }
 
   _createClass(TimelineContainer, [{
+    key: 'updateDimensions',
+    value: function updateDimensions() {
+      var w = window,
+          d = document,
+          documentElement = d.documentElement,
+          body = d.getElementsByTagName('body')[0],
+          width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+          height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
+
+      this.setState({ width: width, height: height });
+      // if you are using ES2015 I'm pretty sure you can do this: this.setState({width, height});
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.updateDimensions();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      window.removeEventListener("resize", this.updateDimensions);
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var actions = this.props.actions;
 
+      window.addEventListener("resize", this.updateDimensions);
       actions.fetchTimeline();
     }
   }, {
@@ -53487,7 +53515,7 @@ var TimelineContainer = function (_Component) {
       if (this.state.processed) {
         loadedComponent = _react2.default.createElement(
           'div',
-          { className: classes.root },
+          { className: this.state.width < 900 ? classes.smaller : classes.normal },
           _react2.default.createElement(_Timeline.Timeline, { events: this.state.events })
         );
       }

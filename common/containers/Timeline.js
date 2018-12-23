@@ -10,7 +10,8 @@ import SchoolIcon from '@material-ui/icons/School';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-  root: {paddingTop: 20, paddingLeft: "25%", paddingRight: "25%"}
+  normal: {paddingTop: 20, paddingLeft: "25%", paddingRight: "25%"},
+  smaller: {padding: 12}
 };
 
 const map = {
@@ -29,15 +30,37 @@ const extraMap = {
 class TimelineContainer extends Component {
     state = {
       processed: false,
-      events: null
+      events: null,
+      width: null,
+      height: null
     }
     constructor(props, context) {
       super(props, context);
       this.processEvents = this.processEvents.bind(this);
+      this.updateDimensions = this.updateDimensions.bind(this);
+    }
+    updateDimensions() {
+      var w = window,
+        d = document,
+        documentElement = d.documentElement,
+        body = d.getElementsByTagName('body')[0],
+        width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+        height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+
+        this.setState({width: width, height: height});
+        // if you are using ES2015 I'm pretty sure you can do this: this.setState({width, height});
+    }
+
+    componentWillMount() {
+        this.updateDimensions();
+    }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
     }
 
     componentDidMount () {
       const { actions } = this.props;
+      window.addEventListener("resize", this.updateDimensions);
       actions.fetchTimeline();
     }
 
@@ -66,7 +89,7 @@ class TimelineContainer extends Component {
       let loadedComponent = null;
       if(this.state.processed){
         loadedComponent = (
-          <div className={classes.root}>
+          <div className={this.state.width < 900 ? classes.smaller : classes.normal}>
             <Timeline events={this.state.events}/>
           </div>);
       }

@@ -8,13 +8,13 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 const styles = (theme) => ({
     contain: {position:'relative', width:"100%", height: 'auto', minHeight:'70%'},
-    outer: {zIndex:500, position:'absolute', top: 0, right:0, width:'100%', height:'100%', backgroundColor:'#121858'},
+    outer: {zIndex:500, position:'absolute', top: 0, right:0, width:'100%', height:'100%', backgroundColor:theme.palette.secondary.dark},
     inner: { padding:10},
     grow: { flexGrow: 1 },
     button: {margin: 15},
     rightIcon: {marginRight: theme.spacing.unit},
     video: {minWidth:"100%", objectFit: 'fill', overflow:'hidden'},
-    gothic: { color: "#69696a", fontFamily: 'Nanum Gothic'}
+    gothic: { color: theme.palette.primary.light, fontFamily: 'Nanum Gothic'}
 });
 
 class Hero extends Component {
