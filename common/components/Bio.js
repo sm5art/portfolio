@@ -1,11 +1,24 @@
 import React, { Component } from "react";
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
+
+const BioItem = (props) => 
+    <Grid item xs>
+        <Grid container>
+            <Grid item xs={12}>
+                <Typography className={props.classes.padded} variant="h4" color="textPrimary">{props.title}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                { props.children }
+            </Grid>
+        </Grid>
+    </Grid>;
+
     
 const styles = {
-    root: {paddingLeft:"10%", paddingRight:"10%"},
+    root: {paddingLeft:"10%", paddingRight:"10%", paddingBottom:"15px"},
     padded: {padding: '15'}
 }
 
@@ -17,21 +30,19 @@ class Bio extends Component {
     render () {
         const { classes } = this.props;
         return <div className={classes.root}> 
-                    <div className={classes.padded}>
-                        <Typography variant="h4" color="textPrimary">
+                    <Typography className={classes.padded} variant="h3" color="textPrimary">
                             About me
-                        </Typography>
-                    </div>
-                    <Grid className={classes.padded} container spacing={24}>
-                        <Grid item xs>
-                            <Paper>xs</Paper>
-                        </Grid>
-                        <Grid item xs>
-                            <Paper>xs</Paper>
-                        </Grid>
-                        <Grid item xs>
-                            <Paper>xs</Paper>
-                        </Grid>
+                    </Typography>
+                    <Grid container spacing={40}>
+                        <BioItem classes={classes} title="Education">
+                            Hi 
+                        </BioItem>
+                        <BioItem classes={classes} title="Work Experience">
+                            hello there
+                        </BioItem>
+                        <BioItem classes={classes} title="Aspirations">
+                            oops
+                        </BioItem>
                     </Grid>
                 </div>
     }

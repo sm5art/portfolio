@@ -1,10 +1,10 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import indigo from '@material-ui/core/colors/indigo';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 
-
-const theme = createMuiTheme({
+const old_theme = createMuiTheme({
     palette: {
-      type: 'dark',
+      type: 'light',
       primary: { main: "#303f9f" }
     },
 
@@ -22,6 +22,44 @@ const theme = createMuiTheme({
       ].join(','),
     }
 });
+
+const theme = createMuiTheme({
+    palette: {
+      type: 'light',
+      primary: {
+        light: '#69696a',
+        main: '#28282a',
+        dark: '#1e1e1f',
+      },
+      secondary: {
+        light: '#fff5f8',
+        main: '#ff3366',
+        dark: '#e62958',
+      },
+      warning: {
+        main: '#ffc071',
+        dark: '#ffb25e',
+      },
+      error: {
+        xLight: red[50],
+        main: red[500],
+        dark: red[700],
+      },
+      success: {
+        xLight: green[50],
+        dark: green[700],
+      },
+    },
+    typography: {
+      fontFamily: "Ubuntu",
+      fontSize: 14,
+      fontWeightLight: 300, // Work Sans
+      fontWeightRegular: 400, // Work Sans
+      fontWeightMedium: 700, // Roboto Condensed
+      fontFamilySecondary: "'Roboto Condensed', sans-serif",
+      useNextVariants: true,
+    }
+  });
 
 
 export default theme;

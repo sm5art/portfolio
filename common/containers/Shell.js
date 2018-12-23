@@ -16,14 +16,21 @@ import DrawerBase from '../components/Drawer';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-const styles = {
+const styles = (theme) => ({
     root: {
       fontWeight: 'bold',
     },
     menuButton: { marginLeft: -12, marginRight: 20 },
+    rightIcon: {
+        marginRight: theme.spacing.unit,
+        marginLeft: theme.spacing.unit,
+      },
+    button: {
+        margin: theme.spacing.unit,
+    },
     grow: { flexGrow:1 },
     flex: { display: "flex" }
-};
+});
 
 class Shell extends Component {
     constructor(props, context) {
@@ -48,13 +55,13 @@ class Shell extends Component {
                                         </Typography>
                                     </div>
                                     <div className={classes.flex}>
-                                        <IconButton href="https://github.com/sm5art" color="inherit">
+                                        <IconButton href="https://github.com/sm5art" color="inherit" aria-label="Github">
                                             <GithubIcon/>
                                         </IconButton>
-                                        <IconButton href="https://www.linkedin.com/in/artur-kashperskiy-9171ab11a/" color="inherit">
+                                        <IconButton href="https://www.linkedin.com/in/artur-kashperskiy-9171ab11a/" color="inherit" aria-label="LinkedIn">
                                             <LinkedInIcon/>
-                                        </IconButton>
-                                        <IconButton href="mailto:arturk@uw.edu" color="inherit">
+                                        </IconButton> 
+                                        <IconButton href="mailto:arturk@uw.edu" color="inherit" aria-label="Email">
                                             <EmailIcon/>
                                         </IconButton>
                                     </div>
