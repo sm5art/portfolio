@@ -4,6 +4,7 @@ import {
   Card, Grid, withStyles
 } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
+import Divider from '@material-ui/core/Divider';
 
 
 const styles = (theme) => ({
@@ -50,7 +51,8 @@ const styles = (theme) => ({
 	borderBottom: '16px solid transparent',
     top: 'calc(50% - 16px)',
     right: '100%',
-  }
+  },
+  divider: { marginTop: '5px', marginBottom: '5px'}
 });
 
 
@@ -91,7 +93,6 @@ class TimelineBase extends React.Component {
 
   getTimelineElement(event, isLeft, i, n) {
     const classes = this.props.classes;
-
     return (
         <Fade timeout={5000*(i/(n-1))+1000} in={true}>
         <div className={classes.cardContainer}>
@@ -100,6 +101,10 @@ class TimelineBase extends React.Component {
             <Card>
             <CardHeader title={event.title} subheader={event.subheader}/>
             <CardContent>
+                { event.extra ?  (<React.Fragment>
+                                    {event.extra}
+                                    <Divider className={classes.divider}/>
+                                  </React.Fragment>) : null }
                 { event.description }
             </CardContent>
             </Card>

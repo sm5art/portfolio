@@ -19,6 +19,13 @@ const map = {
   2:() => <Avatar><SchoolIcon/></Avatar>,
 }
 
+//0 is for genetic pong 
+//1 is for UW
+const extraMap = {
+  0: () => <iframe width="560" height="315" src="https://www.youtube.com/embed/mFOKdGye7vY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
+  1: () => <img style={{width: 200, height: 200}} src="https://s3.amazonaws.com/media.guidebook.com/upload/MobileApp/1067/m3dkkYsBX5DT6kxNvBTay5hQhaLWC6fE6xwE"></img>
+}
+
 class TimelineContainer extends Component {
     state = {
       processed: false,
@@ -45,17 +52,18 @@ class TimelineContainer extends Component {
       let events = []
       for(var i = 0; i < state.timeline.data.length; i++) {
         const object = state.timeline.data[i];
-        events.push({ title: object['name'], subheader: object['created_at'], description: object['description'], icon: map[object['type']]()})
+        let event = { title: object['name'], subheader: object['created_at'], description: object['description'], icon: map[object['type']]()};
+        if('extra_type' in object) {
+          event['extra'] = extraMap[object['extra_type']]()
+        }
+        events.push(event)
       }
-      console.log(events)
       this.setState({processed: true, events})
     }
   
     render() {
       const { state, classes } = this.props;
-      console.log(state)
       let loadedComponent = null;
-      console.log(this.state.events)
       if(this.state.processed){
         loadedComponent = (
           <div className={classes.root}>
