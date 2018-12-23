@@ -22,8 +22,8 @@ const map = {
 //0 is for genetic pong 
 //1 is for UW
 const extraMap = {
-  0: () => <iframe width="560" height="315" src="https://www.youtube.com/embed/mFOKdGye7vY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>,
-  1: () => <img style={{width: 200, height: 200}} src="https://s3.amazonaws.com/media.guidebook.com/upload/MobileApp/1067/m3dkkYsBX5DT6kxNvBTay5hQhaLWC6fE6xwE"></img>
+  0: () => ["iframe", "https://www.youtube.com/embed/mFOKdGye7vY", 500, 200],
+  1: () => ["img", "https://s3.amazonaws.com/media.guidebook.com/upload/MobileApp/1067/m3dkkYsBX5DT6kxNvBTay5hQhaLWC6fE6xwE", 200, 200]
 }
 
 class TimelineContainer extends Component {

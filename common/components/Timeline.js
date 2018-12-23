@@ -4,7 +4,7 @@ import {
   Card, Grid, withStyles
 } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
-import Divider from '@material-ui/core/Divider';
+import CardMedia from '@material-ui/core/CardMedia';
 
 
 const styles = (theme) => ({
@@ -99,12 +99,9 @@ class TimelineBase extends React.Component {
         <div className={isLeft ?
           classes.cardDecoratorLeft : classes.cardDecoratorRight}/>
             <Card>
+            { event.extra ?  (<div style={{display:'flex', flexGrow:1, width: event['extra'][2], height: event['extra'][3]}}><CardMedia component={event['extra'][0]} src={event.extra[1]}/></div>) : null }
             <CardHeader title={event.title} subheader={event.subheader}/>
             <CardContent>
-                { event.extra ?  (<React.Fragment>
-                                    {event.extra}
-                                    <Divider className={classes.divider}/>
-                                  </React.Fragment>) : null }
                 { event.description }
             </CardContent>
             </Card>
