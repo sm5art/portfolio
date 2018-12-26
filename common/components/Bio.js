@@ -2,24 +2,49 @@ import React, { Component } from "react";
 
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import { withStyles } from '@material-ui/core/styles';
+import CardMedia from '@material-ui/core/CardMedia';
+
 
 const BioItem = (props) => 
     <Grid item xs>
         <Grid container>
-            <Grid item xs={12}>
-                <Typography className={props.classes.padded} variant="h4" color="textPrimary">{props.title}</Typography>
-            </Grid>
-            <Grid item xs={12}>
+            <CardW image={props.image} classes={props.classes} title={props.title}>
                 { props.children }
-            </Grid>
+            </CardW>
         </Grid>
     </Grid>;
+
+
+const CardW = (props) => 
+    <Card className={props.classes.full}>
+        { props.image ? <CardMedia
+            className={props.classes.media}
+            image= {props.image}
+            /> : null }
+        <CardContent> 
+          <Typography gutterBottom variant="h5" component="h2">
+            { props.title} 
+          </Typography>
+            { props.children }
+        </CardContent>
+    </Card>
 
     
 const styles = {
     root: {paddingLeft:"10%", paddingRight:"10%", paddingBottom:"15px"},
-    padded: {padding: '15'}
+    padded: {padding: '15'},
+    full: {width: "100%"},
+    media: {
+        height: 140,
+    },
+    paddedBottom: {
+        paddingBottom: 15
+    },
+    uwImage: {width: 50, height: 50,},
+    
 }
 
 class Bio extends Component {
@@ -33,14 +58,18 @@ class Bio extends Component {
                     <Typography className={classes.padded} variant="h3" color="textPrimary">
                             About me
                     </Typography>
-                    <Grid container spacing={40}>
-                        <BioItem classes={classes} title="Education">
-                            Hi 
+                    <Grid className={classes.paddedBottom} container spacing={40}>
+                        <BioItem image="https://www.healthinformationmanagement.uw.edu/UWHIHIM/media/healthinfo/uw-bhihim-admissions.jpg" classes={classes} title="Education">
+                            <Typography variant="body1">
+                                Currently studying Computer Science at University of Washington
+                            </Typography>
+                            <img className={classes.uwImage} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSuQtl8fZhTO5GbjRjSYWy1q3EttHKvhYRvrSAOzxd8PgN8NeioQ" />
+
                         </BioItem>
-                        <BioItem classes={classes} title="Work Experience">
-                            hello there
+                        <BioItem image="http://www.nipuncapital.com/img/nipunL_2.png" classes={classes} title="Work Experience">
+                            ay lamo
                         </BioItem>
-                        <BioItem classes={classes} title="Aspirations">
+                        <BioItem image="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg" classes={classes} title="Aspirations">
                             oops
                         </BioItem>
                     </Grid>

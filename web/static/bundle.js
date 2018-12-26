@@ -15325,6 +15325,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(2);
@@ -15349,9 +15351,19 @@ var _Grid = __webpack_require__(86);
 
 var _Grid2 = _interopRequireDefault(_Grid);
 
+var _timeline = __webpack_require__(394);
+
+var timeline = _interopRequireWildcard(_timeline);
+
 var _CloudDownload = __webpack_require__(289);
 
 var _CloudDownload2 = _interopRequireDefault(_CloudDownload);
+
+var _reactRedux = __webpack_require__(70);
+
+var _redux = __webpack_require__(46);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15367,7 +15379,10 @@ var styles = function styles(theme) {
         outer: { zIndex: 500, position: 'absolute', top: 0, right: 0, width: '100%', height: '100%', backgroundColor: theme.palette.secondary.dark },
         inner: { padding: 10 },
         grow: { flexGrow: 1 },
-        button: { margin: 15 },
+        button: {
+            margin: theme.spacing.unit
+        },
+        yearText: { color: "#9c27b0" },
         rightIcon: { marginRight: theme.spacing.unit },
         video: { minWidth: "100%", objectFit: 'fill', overflow: 'hidden' },
         gothic: { color: theme.palette.primary.light, fontFamily: 'Nanum Gothic' }
@@ -15383,8 +15398,11 @@ var Hero = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Hero.__proto__ || Object.getPrototypeOf(Hero)).call(this, props, context));
 
         _this.state = {
-            fade: false
+            fade: false,
+            years: null
         };
+
+        _this.getYearDifference = _this.getYearDifference.bind(_this);
         return _this;
     }
 
@@ -15392,6 +15410,9 @@ var Hero = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var that = this;
+            if (!this.props.state.timeline.loaded) {
+                this.props.actions.fetchTimeline();
+            }
             setTimeout(function () {
                 that.setState({ fade: true });
             }, 1000);
@@ -15406,6 +15427,22 @@ var Hero = function (_Component) {
                 this.currentTime = 30;
                 this.play();
             }, false);
+        }
+    }, {
+        key: 'getYearDifference',
+        value: function getYearDifference() {
+            var d = new Date();
+            var current_year = d.getFullYear();
+            var n = this.props.state.timeline.data.length;
+            var first_year = parseInt(this.props.state.timeline.data[n - 1]['created_at'].slice(0, 4));
+            return current_year - first_year;
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            if (this.props.state.timeline.loaded && !this.state.years) {
+                this.setState({ years: this.getYearDifference() });
+            }
         }
     }, {
         key: 'render',
@@ -15439,11 +15476,6 @@ var Hero = function (_Component) {
                                 _react2.default.createElement(
                                     _Grid2.default,
                                     { item: true, xs: 12 },
-                                    _react2.default.createElement('div', { className: classes.grow })
-                                ),
-                                _react2.default.createElement(
-                                    _Grid2.default,
-                                    { item: true, xs: 12 },
                                     _react2.default.createElement(
                                         'div',
                                         { style: { display: 'flex' } },
@@ -15454,6 +15486,20 @@ var Hero = function (_Component) {
                                             _react2.default.createElement(_CloudDownload2.default, { className: classes.rightIcon }),
                                             'CV'
                                         )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    _Grid2.default,
+                                    { item: true, xs: 12 },
+                                    _react2.default.createElement(
+                                        _Button2.default,
+                                        { variant: 'outlined', color: 'secondary', href: '/timeline', className: classes.button },
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: classes.yearText },
+                                            this.state.years
+                                        ),
+                                        ' \xA0years of experience and counting'
                                     )
                                 )
                             )
@@ -15472,7 +15518,19 @@ var Hero = function (_Component) {
     return Hero;
 }(_react.Component);
 
-exports.default = (0, _styles.withStyles)(styles)(Hero);
+function mapStateToProps(state) {
+    return {
+        state: state
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: (0, _redux.bindActionCreators)(_extends({}, timeline), dispatch)
+    };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _styles.withStyles)(styles)(Hero));
 
 /***/ }),
 /* 209 */
@@ -44981,7 +45039,19 @@ var _Grid = __webpack_require__(86);
 
 var _Grid2 = _interopRequireDefault(_Grid);
 
+var _Card = __webpack_require__(418);
+
+var _Card2 = _interopRequireDefault(_Card);
+
+var _CardContent = __webpack_require__(424);
+
+var _CardContent2 = _interopRequireDefault(_CardContent);
+
 var _styles = __webpack_require__(31);
+
+var _CardMedia = __webpack_require__(173);
+
+var _CardMedia2 = _interopRequireDefault(_CardMedia);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44999,26 +45069,47 @@ var BioItem = function BioItem(props) {
             _Grid2.default,
             { container: true },
             _react2.default.createElement(
-                _Grid2.default,
-                { item: true, xs: 12 },
-                _react2.default.createElement(
-                    _Typography2.default,
-                    { className: props.classes.padded, variant: 'h4', color: 'textPrimary' },
-                    props.title
-                )
-            ),
-            _react2.default.createElement(
-                _Grid2.default,
-                { item: true, xs: 12 },
+                CardW,
+                { image: props.image, classes: props.classes, title: props.title },
                 props.children
             )
         )
     );
 };
 
+var CardW = function CardW(props) {
+    return _react2.default.createElement(
+        _Card2.default,
+        { className: props.classes.full },
+        props.image ? _react2.default.createElement(_CardMedia2.default, {
+            className: props.classes.media,
+            image: props.image
+        }) : null,
+        _react2.default.createElement(
+            _CardContent2.default,
+            null,
+            _react2.default.createElement(
+                _Typography2.default,
+                { gutterBottom: true, variant: 'h5', component: 'h2' },
+                props.title
+            ),
+            props.children
+        )
+    );
+};
+
 var styles = {
     root: { paddingLeft: "10%", paddingRight: "10%", paddingBottom: "15px" },
-    padded: { padding: '15' }
+    padded: { padding: '15' },
+    full: { width: "100%" },
+    media: {
+        height: 140
+    },
+    paddedBottom: {
+        paddingBottom: 15
+    },
+    uwImage: { width: 50, height: 50 }
+
 };
 
 var Bio = function (_Component) {
@@ -45045,20 +45136,25 @@ var Bio = function (_Component) {
                 ),
                 _react2.default.createElement(
                     _Grid2.default,
-                    { container: true, spacing: 40 },
+                    { className: classes.paddedBottom, container: true, spacing: 40 },
                     _react2.default.createElement(
                         BioItem,
-                        { classes: classes, title: 'Education' },
-                        'Hi'
+                        { image: 'https://www.healthinformationmanagement.uw.edu/UWHIHIM/media/healthinfo/uw-bhihim-admissions.jpg', classes: classes, title: 'Education' },
+                        _react2.default.createElement(
+                            _Typography2.default,
+                            { variant: 'body1' },
+                            'Currently studying Computer Science at University of Washington'
+                        ),
+                        _react2.default.createElement('img', { className: classes.uwImage, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSuQtl8fZhTO5GbjRjSYWy1q3EttHKvhYRvrSAOzxd8PgN8NeioQ' })
                     ),
                     _react2.default.createElement(
                         BioItem,
-                        { classes: classes, title: 'Work Experience' },
-                        'hello there'
+                        { image: 'http://www.nipuncapital.com/img/nipunL_2.png', classes: classes, title: 'Work Experience' },
+                        'ay lamo'
                     ),
                     _react2.default.createElement(
                         BioItem,
-                        { classes: classes, title: 'Aspirations' },
+                        { image: 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg', classes: classes, title: 'Aspirations' },
                         'oops'
                     )
                 )
@@ -53379,6 +53475,10 @@ var _School = __webpack_require__(577);
 
 var _School2 = _interopRequireDefault(_School);
 
+var _CircularProgress = __webpack_require__(441);
+
+var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
 var _styles = __webpack_require__(31);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -53391,9 +53491,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var styles = {
-  normal: { paddingTop: 20, paddingLeft: "25%", paddingRight: "25%" },
-  smaller: { padding: 12 }
+var styles = function styles(theme) {
+  return {
+    normal: { paddingTop: 20, paddingLeft: "25%", paddingRight: "25%" },
+    smaller: { padding: 12 },
+    progress: {
+      margin: theme.spacing.unit * 2,
+      marginLeft: "50%"
+    }
+  };
 };
 
 var map = {
@@ -53479,7 +53585,9 @@ var TimelineContainer = function (_Component) {
       var actions = this.props.actions;
 
       window.addEventListener("resize", this.updateDimensions);
-      actions.fetchTimeline();
+      if (!this.props.state.loaded) {
+        actions.fetchTimeline();
+      }
     }
   }, {
     key: 'componentDidUpdate',
@@ -53509,15 +53617,12 @@ var TimelineContainer = function (_Component) {
     value: function render() {
       var classes = this.props.classes;
 
+      console.log(this.props.state);
       return this.state.processed ? _react2.default.createElement(
         'div',
         { className: this.state.width < 900 ? classes.smaller : classes.normal },
         _react2.default.createElement(_Timeline.Timeline, { events: this.state.events })
-      ) : _react2.default.createElement(
-        'div',
-        null,
-        'Not Loaded'
-      );
+      ) : _react2.default.createElement(_CircularProgress2.default, { className: classes.progress });
     }
   }]);
 

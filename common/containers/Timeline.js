@@ -7,12 +7,17 @@ import { Avatar } from '@material-ui/core';
 import GithubIcon from '../components/GithubIcon';
 import WorkIcon from '@material-ui/icons/Work';
 import SchoolIcon from '@material-ui/icons/School';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
+const styles = (theme) => ({
   normal: {paddingTop: 20, paddingLeft: "25%", paddingRight: "25%"},
-  smaller: {padding: 12}
-};
+  smaller: {padding: 12},
+  progress: {
+    margin: theme.spacing.unit * 2,
+    marginLeft: "50%",
+  },
+});
 
 const map = {
   0:() => <Avatar><GithubIcon/></Avatar>, 
@@ -61,7 +66,9 @@ class TimelineContainer extends Component {
     componentDidMount () {
       const { actions } = this.props;
       window.addEventListener("resize", this.updateDimensions);
-      actions.fetchTimeline();
+      if(! this.props.state.loaded){
+        actions.fetchTimeline();
+      }
     }
 
     componentDidUpdate() {
@@ -86,11 +93,12 @@ class TimelineContainer extends Component {
   
     render() {
       const { classes } = this.props;
+      console.log(this.props.state)
       return (
         this.state.processed ? (
           <div className={this.state.width < 900 ? classes.smaller : classes.normal}>
             <Timeline events={this.state.events}/>
-          </div>) : <div>Not Loaded</div>);
+          </div>) : <CircularProgress className={classes.progress} />);
       
     }
     
