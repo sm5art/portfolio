@@ -86,6 +86,9 @@ class TimelineContainer extends Component {
         if('extra_type' in object) {
           event['extra'] = extraMap[object['extra_type']]()
         }
+        if('html_url' in object) {
+          event['href'] = object['html_url'];
+        }
         events.push(event)
       }
       this.setState({processed: true, events})

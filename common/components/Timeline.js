@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {
   CardHeader, CardContent,
-  Card, Grid, withStyles
+  Card, Grid, withStyles, Typography
 } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 
 
@@ -100,10 +101,14 @@ class TimelineBase extends React.Component {
           classes.cardDecoratorLeft : classes.cardDecoratorRight}/>
             <Card>
             { event.extra ?  (<CardMedia component={event['extra'][0]} src={event.extra[1]}/>) : null }
-            <CardHeader title={event.title} subheader={event.subheader}/>
-            <CardContent>
-                { event.description }
-            </CardContent>
+            <CardActionArea href={event['href']}>
+              <CardHeader title={event.title} subheader={event.subheader}/>
+              <CardContent>
+                <Typography variant="body1">
+                    { event.description }
+                  </Typography>
+              </CardContent>
+            </CardActionArea>
             </Card>
         </div>
       </Fade>
