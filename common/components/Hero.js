@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import * as timeline from '../actions/timeline';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 
 const styles = (theme) => ({
@@ -19,6 +20,7 @@ const styles = (theme) => ({
     },
     yearText: {color: "#9c27b0"},
     rightIcon: {marginRight: theme.spacing.unit},
+    desktopDiv: { paddingLeft: "15%", paddingRight:"15%"},
     video: {minWidth:"100%", objectFit: 'fill', overflow:'hidden'},
     gothic: { color: theme.palette.primary.light, fontFamily: 'Nanum Gothic'}
 });
@@ -26,15 +28,19 @@ const styles = (theme) => ({
 class Hero extends Component {
     state = {
         fade: false,
-        years: null
+        years: null,
+        width: null,
+        height: null
     }
     constructor(props, context) {
         super(props, context);
         this.getYearDifference = this.getYearDifference.bind(this);
+        this.updateDimensions = this.updateDimensions.bind(this);
     }
 
     componentDidMount() {
         const that = this;
+        window.addEventListener("resize", this.updateDimensions);
         if(! this.props.state.timeline.loaded){
             this.props.actions.fetchTimeline();
           }
@@ -50,6 +56,23 @@ class Hero extends Component {
             this.currentTime = 30;
             this.play();
           }, false);
+    }
+    updateDimensions() {
+        var w = window,
+        d = document,
+        documentElement = d.documentElement,
+        body = d.getElementsByTagName('body')[0],
+        width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+        height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+
+        this.setState({width: width, height: height});
+      }
+  
+    componentWillMount() {
+        this.updateDimensions();
+    }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
     }
     
     getYearDifference () {
@@ -70,25 +93,28 @@ class Hero extends Component {
         const {classes} = this.props;
         return (<div className={classes.contain}>
                     <div id='outer' className={classes.outer + " herotransition"}>
-                        <div className={classes.inner}>
+                        <div className={classes.inner + (this.state.width > 900 ? " " + classes.desktopDiv : "")}>
                             <Fade timeout={2000} in={this.state.fade}>
                                 <Grid container spacing={40}>
                                     <Grid item xs={12}>
-                                        <Typography className={classes.gothic} variant="h3" color="textPrimary">
-                                            embedded systems | machine learning | data science | software engineering
-                                        </Typography>
+                                        {["embedded systems", "machine learning", "data science", "software engineering"].map((e) => 
+                                            <Typography className={classes.gothic} variant="h3" color="textPrimary">
+                                                {e}
+                                            </Typography>
+                                        )}
+                                        
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div style={{display: 'flex'}}>
                                             <div style={{display: 'inline'}} className={classes.grow}/>
-                                            <Button target="_blank" variant="contained" className={classes.button} color="primary" href="/static/AKresume.pdf">
+                                            <Button target="_sblank" variant="contained" className={classes.button} color="primary" href="/static/AKresume.pdf">
                                                 <CloudDownloadIcon className={classes.rightIcon}/>
                                                         CV
                                             </Button>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Button variant="outlined" color="secondary" href="/timeline" className={classes.button}>
+                                        <Button variant="outlined" color="secondary" onClick={()=>{browserHistory.push('/timeline')}} className={classes.button}>
                                             <span className={classes.yearText}>{this.state.years}</span> &nbsp;years of experience and counting
                                         </Button>
                                     </Grid>

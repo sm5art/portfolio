@@ -67,10 +67,33 @@ class Bio extends Component {
 
                         </BioItem>
                         <BioItem image="http://www.nipuncapital.com/img/nipunL_2.png" classes={classes} title="Work Experience">
-                            ay lamo
+                            <Typography variant="body1">
+                            <ul>
+                                <li>Quant. Research Intern at Nipun Capital LLC</li>
+                                <li>Software Engineer intern at Minted</li>
+                                    <img className={classes.uwImage} src="https://d1qb2nb5cznatu.cloudfront.net/startups/i/32625-9e2fc8ebe2ab0c51910a512bbdfe5a4a-medium_jpg.jpg?buster=1507058558"/>
+                            </ul>
+                            </Typography>
                         </BioItem>
-                        <BioItem image="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg" classes={classes} title="Aspirations">
-                            oops
+                        <BioItem image="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg" classes={classes} title="Aspirations/Interests">
+                            <Typography variant="body1">
+                            <ul>
+                                <li>
+                                    Machine learning applications in
+                                    <ul>
+                                        <li>genetics</li>
+                                        <li>finance</li>
+                                        <li>computer vision</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Aerospace technologies (hobby rc quadcopters)
+                                </li>
+                                <li>
+                                    Blockchain platform technologies (EOS, ETH)
+                                </li>
+                            </ul>
+                            </Typography>
                         </BioItem>
                     </Grid>
                 </div>

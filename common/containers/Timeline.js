@@ -11,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
-  normal: {paddingTop: 20, paddingLeft: "25%", paddingRight: "25%"},
+  normal: {paddingTop: 20, paddingLeft: "25%", paddingRight: "25%", paddingBottom: 12},
   smaller: {padding: 12},
   progress: {
     margin: theme.spacing.unit * 2,
@@ -93,7 +93,6 @@ class TimelineContainer extends Component {
   
     render() {
       const { classes } = this.props;
-      console.log(this.props.state)
       return (
         this.state.processed ? (
           <div className={this.state.width < 900 ? classes.smaller : classes.normal}>
