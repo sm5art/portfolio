@@ -61,7 +61,9 @@ class Bio extends Component {
                     <Grid className={classes.paddedBottom} container spacing={40}>
                         <BioItem image="https://www.healthinformationmanagement.uw.edu/UWHIHIM/media/healthinfo/uw-bhihim-admissions.jpg" classes={classes} title="Education">
                             <Typography variant="body1">
-                                Currently studying Computer Science at University of Washington
+                                Currently studying Mathematics at University of Washington
+                                <br/>
+                                Research assistant at Autonomous Flight Systems Lab
                             </Typography>
                             <img className={classes.uwImage} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSuQtl8fZhTO5GbjRjSYWy1q3EttHKvhYRvrSAOzxd8PgN8NeioQ" />
 
@@ -75,23 +77,34 @@ class Bio extends Component {
                             </ul>
                             </Typography>
                         </BioItem>
-                        <BioItem image="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg" classes={classes} title="Aspirations/Interests">
+                        <BioItem image="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg" classes={classes} title="Interests">
                             <Typography variant="body1">
                             <ul>
                                 <li>
-                                    Machine learning applications in
+                                    Mathematical applications in
                                     <ul>
-                                        <li>genetics</li>
                                         <li>finance</li>
-                                        <li>computer vision</li>
+                                        <li>computer science</li>
                                     </ul>
                                 </li>
                                 <li>
-                                    Aerospace technologies (hobby rc quadcopters)
+                                    Hobby electronics 
+                                    <br></br>i.e.
+                                    <ul>
+                                        <li>Pi</li>
+                                        <li>Arduino</li>
+                                    </ul>
                                 </li>
                                 <li>
                                     Blockchain platform technologies (EOS, ETH)
                                 </li>
+                                <li>
+                                    Skiing
+                                </li>
+                                <li>
+                                    Rock climbing
+                                </li>
+
                             </ul>
                             </Typography>
                         </BioItem>

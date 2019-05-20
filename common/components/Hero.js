@@ -97,12 +97,12 @@ class Hero extends Component {
                             <Fade timeout={2000} in={this.state.fade}>
                                 <Grid container spacing={40}>
                                     <Grid item xs={12}>
-                                        {["embedded systems", "machine learning", "data science", "software engineering"].map((e) => 
-                                            <Typography className={classes.gothic} variant="h3" color="textPrimary">
-                                                {e}
-                                            </Typography>
-                                        )}
-                                        
+                                        <Typography className={classes.gothic} variant="h3" color="textPrimary">
+                                            math student/researcher at UW Seattle
+                                        </Typography>    
+                                        <Typography className={classes.gothic} variant="h3" color="textPrimary">
+                                            self-taught programmer
+                                        </Typography> 
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div style={{display: 'flex'}}>
