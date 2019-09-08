@@ -5,6 +5,7 @@
   "scripts": {
     "start": "cd web;./webpack.sh;node server.js",
     "build": "cd web; ./webpack.sh;",
+    "watch": "cd web; ./webpack_watch.sh;",
     "test": "jest"
   },
   "dependencies": {

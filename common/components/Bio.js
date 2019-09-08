@@ -61,9 +61,10 @@ class Bio extends Component {
                     <Grid className={classes.paddedBottom} container spacing={40}>
                         <BioItem image="https://www.healthinformationmanagement.uw.edu/UWHIHIM/media/healthinfo/uw-bhihim-admissions.jpg" classes={classes} title="Education">
                             <Typography variant="body1">
-                                Currently studying Mathematics at University of Washington
-                                <br/>
-                                Research assistant at Autonomous Flight Systems Lab
+                                <ul>
+                                    <li>Currently studying Mathematics at University of Washington minor in Applied Mathematics '2021</li>
+                                    <li>Part-time Full Stack Engineer at Heali.ai</li>
+                                </ul>
                             </Typography>
                             <img className={classes.uwImage} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSuQtl8fZhTO5GbjRjSYWy1q3EttHKvhYRvrSAOzxd8PgN8NeioQ" />
 
@@ -71,40 +72,17 @@ class Bio extends Component {
                         <BioItem image="http://www.nipuncapital.com/img/nipunL_2.png" classes={classes} title="Work Experience">
                             <Typography variant="body1">
                             <ul>
-                                <li>Quant. Research Intern at Nipun Capital LLC</li>
-                                <li>Software Engineer intern at Minted</li>
-                                    <img className={classes.uwImage} src="https://d1qb2nb5cznatu.cloudfront.net/startups/i/32625-9e2fc8ebe2ab0c51910a512bbdfe5a4a-medium_jpg.jpg?buster=1507058558"/>
+                                <li>Quant. Research Intern at Nipun Capital LLC<br/><span style={{fontWeight: "bold"}}>Stack</span>: <ul><li>python</li><li>keras</li><li>pandas/numpy</li><li>MySQL</li></ul></li>
+                                <li>Software Engineer intern at Minted<br/><span style={{fontWeight: "bold"}}>Stack</span>: <ul><li>python</li><li>MySQL</li><li>React-redux</li><li>AWS</li><li>Vagrant</li></ul></li>
                             </ul>
                             </Typography>
                         </BioItem>
-                        <BioItem image="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg" classes={classes} title="Interests">
+                        <BioItem image="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/12/24/08/spacex-rocket-launch-watch-video-0.jpg" classes={classes} title="Professional Interests">
                             <Typography variant="body1">
                             <ul>
-                                <li>
-                                    Mathematical applications in
-                                    <ul>
-                                        <li>finance</li>
-                                        <li>computer science</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Hobby electronics 
-                                    <br></br>i.e.
-                                    <ul>
-                                        <li>Pi</li>
-                                        <li>Arduino</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Blockchain platform technologies (EOS, ETH)
-                                </li>
-                                <li>
-                                    Skiing
-                                </li>
-                                <li>
-                                    Rock climbing
-                                </li>
-
+                                <li>Game design/development (especially distribution/scaling)</li>
+                                <li>Software product development</li>
+                                <li>Embedded computing</li>
                             </ul>
                             </Typography>
                         </BioItem>

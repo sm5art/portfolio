@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,6 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 import DrawerBase from '../components/Drawer';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 const styles = (theme) => ({
     root: {
@@ -53,8 +55,13 @@ class Shell extends Component {
                                         <Typography className={classes.root} variant="h6" color="inherit">
                                             Artur Kashperskiy
                                         </Typography>
+                                        <img style={{width: "auto", height: "95%"}} src="https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/98/2014/09/07214451/W-Logo_Purple_Hex.png"/>
                                     </div>
                                     <div className={classes.flex}>
+                                        <Button target="_sblank" variant="contained" className={classes.button} color="primary" href="/static/AKresume.pdf">
+                                                <CloudDownloadIcon className={classes.rightIcon}/>
+                                                        CV
+                                        </Button>
                                         <IconButton href="https://github.com/sm5art" color="inherit" aria-label="Github">
                                             <GithubIcon/>
                                         </IconButton>

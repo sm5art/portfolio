@@ -5,7 +5,6 @@ import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import * as timeline from '../actions/timeline';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
@@ -56,6 +55,8 @@ class Hero extends Component {
             this.currentTime = 30;
             this.play();
           }, false);
+
+        setInterval(() => {if(this.props.state.timeline.loaded) this.setState({years: this.getYearDifference()})}, 1000)
     }
     updateDimensions() {
         var w = window,
@@ -77,10 +78,10 @@ class Hero extends Component {
     
     getYearDifference () {
         var d = new Date();
-        var current_year = d.getFullYear();
+        var current_year = d.getTime();
         var n = this.props.state.timeline.data.length;
-        var first_year = parseInt(this.props.state.timeline.data[n-1]['created_at'].slice(0, 4))
-        return current_year-first_year;
+        var first_year = Date.parse(this.props.state.timeline.data[n-1]['created_at'])
+        return parseInt((current_year-first_year)/1000);
     }
 
     componentDidUpdate() {
@@ -98,24 +99,15 @@ class Hero extends Component {
                                 <Grid container spacing={40}>
                                     <Grid item xs={12}>
                                         <Typography className={classes.gothic} variant="h3" color="textPrimary">
-                                            math student/researcher at UW Seattle
+                                            math student at UW Seattle
                                         </Typography>    
                                         <Typography className={classes.gothic} variant="h3" color="textPrimary">
                                             self-taught programmer
                                         </Typography> 
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <div style={{display: 'flex'}}>
-                                            <div style={{display: 'inline'}} className={classes.grow}/>
-                                            <Button target="_sblank" variant="contained" className={classes.button} color="primary" href="/static/AKresume.pdf">
-                                                <CloudDownloadIcon className={classes.rightIcon}/>
-                                                        CV
-                                            </Button>
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12}>
                                         <Button variant="outlined" color="secondary" onClick={()=>{browserHistory.push('/timeline')}} className={classes.button}>
-                                            <span className={classes.yearText}>{this.state.years}</span> &nbsp;years of experience and counting
+                                            <span className={classes.yearText}>{this.state.years}</span> &nbsp;seconds&nbsp;/&nbsp;<span className={classes.yearText}>{parseInt(this.state.years/60/60/24)}</span> &nbsp;days&nbsp;/&nbsp;<span className={classes.yearText}>{parseInt(this.state.years/60/60/24/365)}</span> &nbsp;years of experience and counting
                                         </Button>
                                     </Grid>
                                 </Grid>

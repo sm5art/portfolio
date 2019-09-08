@@ -25,7 +25,7 @@ const old_theme = createMuiTheme({
 
 const theme = createMuiTheme({
     palette: {
-      type: 'light',
+      type: 'dark',
       primary: {
         light: '#69696a',
         main: '#28282a',
