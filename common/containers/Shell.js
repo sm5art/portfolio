@@ -55,7 +55,6 @@ class Shell extends Component {
                                         <Typography className={classes.root} variant="h6" color="inherit">
                                             Artur Kashperskiy
                                         </Typography>
-                                        <img style={{width: "auto", height: "95%"}} src="https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/98/2014/09/07214451/W-Logo_Purple_Hex.png"/>
                                     </div>
                                     <div className={classes.flex}>
                                         <Button target="_sblank" variant="contained" className={classes.button} color="primary" href="/static/AKresume.pdf">
