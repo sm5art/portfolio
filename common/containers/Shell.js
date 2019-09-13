@@ -37,9 +37,32 @@ const styles = (theme) => ({
 class Shell extends Component {
     constructor(props, context) {
         super(props, context);
-    }
+        this.updateDimensions = this.updateDimensions.bind(this);
+      }
+      updateDimensions() {
+        var w = window,
+          d = document,
+          documentElement = d.documentElement,
+          body = d.getElementsByTagName('body')[0],
+          width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+          height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+  
+          this.setState({width: width, height: height});
+          // if you are using ES2015 I'm pretty sure you can do this: this.setState({width, height});
+      }
+  
+      componentWillMount() {
+          this.updateDimensions();
+      }
+      componentWillUnmount() {
+          window.removeEventListener("resize", this.updateDimensions);
+      }
+  
+      componentDidMount () {
+        window.addEventListener("resize", this.updateDimensions);
+      }
 
-    render () {
+    render () { 
         const {classes, actions} = this.props;
         return (<MuiThemeProvider theme={theme}>
                     <CssBaseline />
@@ -61,15 +84,15 @@ class Shell extends Component {
                                                 <CloudDownloadIcon className={classes.rightIcon}/>
                                                         CV
                                         </Button>
-                                        <IconButton href="https://github.com/sm5art" color="inherit" aria-label="Github">
-                                            <GithubIcon/>
-                                        </IconButton>
                                         <IconButton href="https://www.linkedin.com/in/artur-kashperskiy-9171ab11a/" color="inherit" aria-label="LinkedIn">
                                             <LinkedInIcon/>
                                         </IconButton> 
+                                        {this.state.width > 900 && <div><IconButton href="https://github.com/sm5art" color="inherit" aria-label="Github">
+                                            <GithubIcon/>
+                                        </IconButton>
                                         <IconButton href="mailto:arturk@uw.edu" color="inherit" aria-label="Email">
                                             <EmailIcon/>
-                                        </IconButton>
+                                        </IconButton></div> }
                                     </div>
                                 </Toolbar>
                             </AppBar>

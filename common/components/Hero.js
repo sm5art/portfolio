@@ -107,7 +107,7 @@ class Hero extends Component {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Button variant="outlined" color="secondary" onClick={()=>{browserHistory.push('/timeline')}} className={classes.button}>
-                                            <span className={classes.yearText}>{this.state.years}</span> &nbsp;seconds&nbsp;/&nbsp;<span className={classes.yearText}>{parseInt(this.state.years/60/60/24)}</span> &nbsp;days&nbsp;/&nbsp;<span className={classes.yearText}>{parseInt(this.state.years/60/60/24/365)}</span> &nbsp;years of experience and counting
+                                            <span className={classes.yearText}>{this.state.years}</span> &nbsp;seconds&nbsp;/&nbsp;{this.state.width > 900 && <span><span className={classes.yearText}>{parseInt(this.state.years/60/60/24)}</span><span>&nbsp;days&nbsp;/</span></span> }&nbsp;<span className={classes.yearText}>{parseInt(this.state.years/60/60/24/365)}</span> &nbsp;years of experience and counting
                                         </Button>
                                     </Grid>
                                 </Grid>
