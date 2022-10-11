@@ -28,7 +28,7 @@
     "react-facebook-login": "^4.1.1",
     "react-konva": "^16.6.31",
     "react-material-timeline": "^3.0.1",
-    "react-native": "^0.57.4",
+    "react-native": "^0.70.2",
     "react-redux": "^5.0.6",
     "react-router": "^3.0.2",
     "react-router-redux": "^4.0.8",
