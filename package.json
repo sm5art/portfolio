@@ -20,7 +20,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "cors": "^2.8.5",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "fsevents": "^1.2.4",
     "react": "^16.0.0",
     "react-art": "^16.6.3",
